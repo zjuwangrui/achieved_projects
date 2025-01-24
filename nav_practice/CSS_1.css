@@ -1,0 +1,60 @@
+.topNav{
+    display: flex;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+.qsc_logo{
+    width: 30px;
+    flex-grow: 0;
+    margin-left: 10px;
+}
+.leftEntry{
+    list-style: none;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding: 0;
+    padding-right: 5px;
+}
+.leftEntryItem{
+    margin: 0 5px;
+    position: relative;
+}
+.leftEntryItem::after{
+    content: '';
+    background-image: url('https://tse3-mm.cn.bing.net/th/id/OIP-C.xlRUMF0SYcQI1hSVqa7pHAHaHa?rs=1&pid=ImgDetMain');
+    position: absolute;
+    left: 0;
+    width: 10px;
+    height: 10px;
+}
+.searchEntry{
+    display: flex;
+    flex-grow: 1;
+    /* max-width: ; */
+}
+input{
+    flex-grow: 1;
+    flex-shrink: 0;
+
+}
+.rightEntry{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    padding-left: 10px;
+    flex-grow: 1;
+    justify-content: space-evenly;
+}
+.rightEntryItem{
+    margin-right: 10px;
+}
+a{
+    text-decoration: none;
+    color: black;
+    display: block;
+}
