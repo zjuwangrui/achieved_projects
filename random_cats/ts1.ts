@@ -29,14 +29,14 @@ class Cat implements ICat {
 
 
 //接收数据生成猫，并添加相应的标签的类
-const tableBody = document.getElementsByTagName("tbody");
+const tableBody  = (document.getElementsByTagName("tbody"))[0];
 class WebDisplay {
     public static creatCatFromAPIData(data: ICat): void {
         const cat = new Cat(data.id, data.height, data.width, data.url);
         const tableRow :HTMLTableRowElement= document.createElement("tr");
         tableRow.innerHTML = `
             <td>id${cat.id}</td>
-            <td><img src="" alt=""></td>
+            <td><img src=${cat.url} alt=""></td>
             <td>高度${cat.height.toString()}</td>
             <td>宽度${cat.width.toString()}</td>
             <td>地址${cat.url}</td>
@@ -58,10 +58,11 @@ async function getJSON<T>(url:string):Promise<T> {
     return json;
 }
 
-async function getData():Promise<void> {
+async function getData():Promise<string|ICat> {
     try{
-    const json:ICat[]=await getJSON(url);
+    const json:ICat[]=await getJSON('https://api.thecatapi.com/v1/images/search');
     const data:ICat=json[0];
+    return data;
     }
     catch(error:Error|unknown){
         let message:string;
@@ -72,10 +73,28 @@ async function getData():Promise<void> {
             message=String(error);
         }
         console.log(message);
+        return message;
     }
+    
+}
+
+function handleClick():void{
+    
+    getData().then((cat:ICat|string)=>
+    {
+        if(typeof(cat)==="string"){
+        return;
+        }
+        else{
+            WebDisplay.creatCatFromAPIData(cat);
+            return ;
+        }
+    }
+    )
+
 }
 console.log(getJSON('https://api.thecatapi.com/v1/images/search'));
-button?.addEventListener<'click'>("click",getData);
+button?.addEventListener<'click'>("click",handleClick);
 tableBody?.addEventListener<'click'>("click",(event:MouseEvent)=>{
     WebDisplay.deleteData(<HTMLAnchorElement>event.target);
-})
+});
