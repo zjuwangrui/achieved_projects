@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
       "target": "ES2017",  // or higher, like "ES2020" or "ESNext"
-      "lib": ["ES2017", "DOM"], // Include the ES2015 library
+      "lib": ["ES2017", "DOM"], 
       "strict": true,  // Optional, for strict type checking
-      // other options...
+      
     },
-    "include": ["ts1.ts","test.ts"]
+    "include": ["index.ts","test.ts"]
 }
   
